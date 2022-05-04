@@ -1,7 +1,7 @@
 ## Javascript Tetris: [PLAY HERE](https://tetris.votommy.com)
 
 Recent additions: 
-- Implemented Leaderboard (requires database api key)
+- Implemented Leaderboard
 - Implemented fast drop.
 - Implemented column highlighting.
 - Implemented Game Over condition
