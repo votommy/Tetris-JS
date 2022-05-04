@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <title>Tetris</title>
+        <script type="module" src="leaderboard.js"></script>
+        <script src="game.js" defer></script>
+    </head>
+    <body>
+        <div id="assets">
+            <img id="bg" src="../img/bg.png" height="400" width="200" />
+            <img id="cube" src="../img/cube.png" height="20" width="20" />
+        </div>
+        
+        <br><br>
+        <div class="keyboard">
+            <div id="leftArrow">&#8592;</div><span id="leftArrowTxt">MOVE<br>LEFT</span>
+            <div id="rightArrow">&#8594;</div><span id="rightArrowTxt">MOVE<br>RIGHT</span>
+            <div id="upArrow">&#8593;</div><span id="upArrowTxt">ROTATE RIGHT</span>
+            <div id="downArrow">&#8595;</div><span id="downArrowTxt">SOFT DROP</span>
+            <div id="spacebar">______</div><span id="spaceTxt">HARD DROP</span>
+            <div id="zBtn">Z</div><span id="zTxt">ROTATE<br>LEFT</span>
+            <div id="xBtn">X</div><span id="xTxt">ROTATE<br>RIGHT</span>
+            <div id="escBtn">Esc</div><span id="rTxt">RESTART</span>
+        </div>
+        <div id="tetris">
+            <h1>TETRIS CLONE</h1>
+            <div id="main">
+                <div id="startDirection"><p>PRESS ENTER<br>TO START</p></div>
+                <div id="gameOverMsg"><p>GAME OVER<br>TRY AGAIN</p></div>
+                <canvas id="ghostarena" height="600" width="300"></canvas>
+                <canvas id="gamearena" height="600" width="300"></canvas>
+            </div>
+            <div id="sidebar">
+                <div id="scoreboard">
+                    <div>
+                        <p>TIME</p>
+                        <span id="timer">00:00</span>
+                    </div><hr>
+                    <div>
+                        <p>SCORE</p>
+                        <span id="score">0</span>
+                    </div><hr>
+                    <div>
+                        <p>LVL</p>
+                        <span id="level">1</span>
+                    </div><hr>
+                    <div>
+                        <p>LINES</p>
+                        <span id="lines">0</span>
+                    </div><hr>
+                    <br>
+                    <label>NEXT</label>
+                    <br><br>
+                    <div id="bullpen">
+                        <canvas id="bullpenarea" height="80" width="80"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="leaderboard"></div>
+
+        <div id="namePrompt">
+            <form class="addScore">
+                <label for="playerName">Name:</label>
+                <input id="playername" type="text" name="name" maxlength="3" placeholder="AAA" required><br>
+                <label for="highScore">Score:</label>
+                <input id="highscore" type="number" name="highscore" readonly="readonly">
+
+                <br>
+                <button id="addScoreBtn">OK</button>
+            </form>
+        </div>
+        
+        <footer>
+            <p style="font-family: sans-serif;">
+                Developed by: Andrew Erwin &amp; Tommy Vo | Check out the <a href="https://github.com/votommy/js-tetris" target="_blank" rel="noopener noreferrer" aria-label="Github repository for modded version - opens in new tab" >repo</a>.
+            </p>
+        </footer>
+    </body>
+</html>

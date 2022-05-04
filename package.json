@@ -1,0 +1,23 @@
+{
+  "name": "tetris-js",
+  "version": "1.0.0",
+  "description": "Making Tetris from the ground up to avoid compatibility issues present in the first attempt which was forked from an ongoing project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/votommy/Tetris-JS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/votommy/Tetris-JS/issues"
+  },
+  "homepage": "https://github.com/votommy/Tetris-JS#readme",
+  "dependencies": {
+    "firebase": "^9.7.0"
+  }
+}

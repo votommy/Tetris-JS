@@ -1,0 +1,264 @@
+@font-face {
+    font-family: 'Press_Start';
+    src: url('../fonts/PressStartRegular.woff2') format('woff2'),
+         url('../fonts/PressStartRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    overflow: hidden; /*Prevent scrolling via the arrow keys*/
+}
+body {
+    font-family: "Press_Start";
+}
+
+#assets
+{
+    display: none;
+}
+
+.keyboard {
+    font-size: 12px;
+    position: absolute;
+    left: 0px;
+    top: 700px;
+}
+.keyboard div {
+    background-color: #DDD;
+    width: 30px;
+    height: 25px;
+    position: absolute;
+    border: 1px gray solid;
+    text-align: center;
+    padding-top: 5px;
+    font-family: sans-serif;
+}
+#leftArrow {
+    left: 530px;
+    top: 60px;
+}
+#rightArrow {
+    left: 590px;
+    top: 60px;
+}
+#downArrow {
+    left: 560px;
+    top: 60px;
+}
+#upArrow {
+    left: 560px;
+    top: 30px;
+}
+#spacebar {
+    width: 180px;
+    left: 250px;
+    top: 60px;
+}
+#zBtn {
+    left: 85px;
+    top: 60px;
+}
+#xBtn {
+    left: 115px;
+    top: 60px;
+}
+#escBtn {
+    left: 85px;
+    top: 110px;
+    width: 45px;
+}
+.keyboard span {
+    position: absolute;
+    text-align: center;
+}
+#leftArrowTxt {
+    left: 480px;
+    top: 63px;
+}
+#rightArrowTxt {
+    left: 626px;
+    top: 63px;
+}
+#downArrowTxt {
+    left: 554px;
+    top: 96px;
+}
+#upArrowTxt {
+    left: 544px;
+    top: 1px;
+}
+#spaceTxt {
+    left: 287px;
+    top: 97px;
+    width: 108px;
+}
+#zTxt {
+    left: 11px;
+    top: 63px;
+}
+#xTxt {
+    left: 151px;
+    top: 63px;
+}
+#rTxt {
+    left: 67px;
+    top: 147px;
+}
+
+h1 {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    color: #5f7d99;
+}
+
+#tetris
+{
+    background-color: #AAA;
+    background-image: linear-gradient(#e1e7ed, #a9bfd4);
+    border: solid 2px #8396a8;
+    border-radius: 16px;
+    display: flex;
+    height: 650px;
+    padding: 1.5rem;
+    width: 430px;
+}
+
+#ghostArena {
+    position: fixed;
+}
+
+#main
+{
+    position: absolute;
+    height: 600px;
+    width: 300px;
+    top: 115px;
+}
+
+#startDirection {
+    text-align: center;
+    line-height: 1.5rem;
+    display: block;
+    position: absolute;
+    z-index: 999;
+    top: 250px;
+    left: 52px;
+    color: #fff;
+    font-size: 1rem;
+    background-color: rgba(0,0,0,.6);
+    padding: 0 10px;
+}
+
+#gameOverMsg {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    top: 250px;
+    left: 69px;
+    color: #fff;
+    font-size: 1rem;
+    background-color: rgba(0,0,0,.6);
+    padding: 0 10px;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+hr {
+    border: 1px solid #8396a8;
+}
+#sidebar
+{
+    position: absolute;
+    color: #000;
+    padding-left: 20px;
+    width: 100px;
+    font-weight: bold;
+    top: 100px;
+    left: 340px;
+}
+
+#sidebar div {
+    padding-bottom: 10px;
+}
+#sidebar div p {
+    margin-bottom: 5px;
+}
+
+a {
+    color: #000;
+    font-weight: bold;
+}
+
+#leaderboard {
+    position: absolute;
+    top: 45px;
+    left: 700px;
+    padding: 16px 30px;
+    background-color: #AAA;
+    background-image: linear-gradient(#e1e7ed, #a9bfd4);
+    border: solid 2px #8396a8;
+    border-radius: 16px;
+    display: none;
+}
+#leaderboard td {
+    text-align: left;
+    font-weight: normal;
+    padding-bottom: 15px;
+}
+#leaderboard h2 {
+    font-size: 20px;
+    color: #5f7d99;
+    text-align: center;
+}
+
+
+#namePrompt {
+    display: none;
+    position: absolute;
+    top: 285px;
+    left: 600px;
+    background-color: #AAA;
+    background-image: linear-gradient(#e1e7ed, #a9bfd4);
+    border: solid 2px #8396a8;
+    border-radius: 16px;
+    padding: 3rem;
+}
+#playername {
+    font-family: "Press_Start";
+    font-size: 20px;
+    padding: 5px 0 5px 5px;
+    background-color: black;
+    color: yellow;
+    border: none;
+}
+#highscore {
+    margin-top: 2rem;
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-family: "Press_Start";
+    font-size: 20px;
+}
+#highscore:focus {
+    outline: none;
+}
+#addScoreBtn {
+    margin-top: 2rem;
+    font-family: "Press_Start";
+    background-color: #00CC00;
+    padding: 1rem 3rem;
+    color: white;
+    border: black 2px solid;
+}
+#addScoreBtn:hover {
+    cursor: pointer;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
