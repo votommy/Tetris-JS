@@ -14,7 +14,7 @@ const firebaseApp = initializeApp( {
 
 // Initialize services
 initializeAppCheck(firebaseApp, {
-    provider: new ReCaptchaV3Provider('6LdzR8EfAAAAALsM42vhPHUaP29TPwBlbICwBW2U')
+    provider: new ReCaptchaV3Provider('6LeV3cQfAAAAAP7Y9-LYh4EbGEgn_Ux5gx0DKxNL')
 });
 const db = getFirestore(firebaseApp);
 const colRef = collection(db, 'highscores');
