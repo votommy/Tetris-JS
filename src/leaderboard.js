@@ -12,15 +12,14 @@ const firebaseApp = initializeApp( {
     appId: "1:926826076612:web:c79d1f239a6a058c236c91"
 });
 
+// Initialize services
 initializeAppCheck(firebaseApp, {
     provider: new ReCaptchaV3Provider('6LdzR8EfAAAAALsM42vhPHUaP29TPwBlbICwBW2U')
 });
-// appCheck.activate('6LdzR8EfAAAAALsM42vhPHUaP29TPwBlbICwBW2U');
-// Initialize services
 const db = getFirestore(firebaseApp);
 const colRef = collection(db, 'highscores');
 // Query db for top highscores
-const leaders = query(colRef, orderBy('highscore', 'desc'), limit(10));
+const leaders = query(colRef, orderBy('highscore', 'desc'), limit(100));
 
 // Set up leaderboard
 const outputTable = document.querySelector("#leaderboard");
@@ -68,5 +67,6 @@ addScoreForm.addEventListener('submit', (e) => {
     .then(() => {
         addScoreForm.reset()
         document.querySelector('#namePrompt').style.display = "none";
+        window.location.reload();
     })
 })
