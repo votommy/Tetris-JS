@@ -1,3 +1,5 @@
+<img src="img/logo.svg" width="200px">
+
 ## Tetris Javascript: [PLAY HERE](https://tetris.votommy.com)
 
 Recent additions: 
