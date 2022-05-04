@@ -1,4 +1,4 @@
-## Javascript Tetris: [PLAY HERE](https://tetris.votommy.com)
+## Tetris Javascript: [PLAY HERE](https://tetris.votommy.com)
 
 Recent additions: 
 - Implemented Leaderboard
