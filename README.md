@@ -1,6 +1,6 @@
 <img src="img/logo.svg" width="200px">
 
-## Tetris Javascript: [PLAY HERE](https://tetris.votommy.com)
+## Tetris JS: [PLAY HERE](https://tetris.votommy.com)
 
 Recent additions: 
 - Implemented Leaderboard
