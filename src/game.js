@@ -255,8 +255,10 @@ function gameOver()
     document.querySelector("#gameOverMsg").style.display = "block";
     //TODO: reset game
 
-    if (document.querySelector("#leaderboard").style.display == "block") { //only prompt to enter name if the leaderboard successfully loaded from API
+    //only prompt to enter name if the leaderboard successfully loaded from API & score is > 0
+    if (document.querySelector("#leaderboard").style.display == "block" && score > 0) {
         document.querySelector("#namePrompt").style.display = "block";
+        document.querySelector("#playername").focus();
         document.querySelector("#highscore").value = score;
     }
 }

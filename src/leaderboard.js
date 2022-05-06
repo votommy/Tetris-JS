@@ -12,6 +12,7 @@ const firebaseApp = initializeApp( {
     appId: "1:926826076612:web:c79d1f239a6a058c236c91"
 });
 
+// self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
 // Initialize services
 initializeAppCheck(firebaseApp, {
     provider: new ReCaptchaV3Provider('6LfAJ8UfAAAAANN205i5Eu7kNA8OVLmRzRWA-g_N')

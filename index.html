@@ -64,7 +64,7 @@
         <div id="namePrompt">
             <form class="addScore">
                 <label for="playerName">Name:</label>
-                <input id="playername" type="text" name="name" maxlength="3" placeholder="AAA" required><br>
+                <input id="playername" type="text" name="name" minlength="3" maxlength="3" placeholder="AAA" onkeypress="return (event.keyCode >= 97 && event.keyCode <= 122) || (event.keyCode >= 65 && event.keyCode <= 90) || (event.charCode >= 48 && event.charCode <= 57)" required><br>
                 <label for="highScore">Score:</label>
                 <input id="highscore" type="number" name="highscore" readonly="readonly">
 
