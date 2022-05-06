@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.7.0/firebase-app.js';
-import { getFirestore, collection, getDocs, addDoc, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js';
+import { getFirestore, collection, getDocs, addDoc, query, orderBy, limit, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.7.0/firebase-firestore.js';
 import { initializeAppCheck, ReCaptchaV3Provider } from 'https://www.gstatic.com/firebasejs/9.7.0/firebase-app-check.js';
 
 // Initialize Firebase
@@ -20,7 +20,7 @@ initializeAppCheck(firebaseApp, {
 const db = getFirestore(firebaseApp);
 const colRef = collection(db, 'highscores');
 // Query db for top highscores
-const leaders = query(colRef, orderBy('highscore', 'desc'), limit(100));
+const leaders = query(colRef, orderBy('highscore', 'desc'), orderBy('timestamp'), limit(100));
 
 // Set up leaderboard
 const outputTable = document.querySelector("#leaderboard");
@@ -64,6 +64,7 @@ addScoreForm.addEventListener('submit', (e) => {
     addDoc(colRef, {
         name: addScoreForm.name.value.toUpperCase(),
         highscore: parseInt(document.querySelector('#score').innerText),
+        timestamp: serverTimestamp()
     })
     .then(() => {
         addScoreForm.reset()

@@ -257,6 +257,9 @@ a {
 #highscore:focus {
     outline: none;
 }
+#timestamp {
+    display: none;
+}
 #addScoreBtn {
     margin-top: 2rem;
     font-family: "Press_Start";
