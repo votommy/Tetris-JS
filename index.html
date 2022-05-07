@@ -64,11 +64,11 @@
         <div id="namePrompt">
             <form class="addScore">
                 <label for="playerName">Name:</label>
-                <input id="playername" type="text" name="name" minlength="3" maxlength="3" placeholder="AAA" onkeypress="return (event.keyCode >= 97 && event.keyCode <= 122) || (event.keyCode >= 65 && event.keyCode <= 90)" required><br>
+                <input id="playername" type="text" name="name" minlength="3" maxlength="3" placeholder="AAA" onkeypress="return (event.keyCode >= 97 && event.keyCode <= 122) || (event.keyCode >= 65 && event.keyCode <= 90)" autocomplete="off" required><br>
                 <label for="highScore">Score:</label>
                 <input id="highscore" type="number" name="highscore" readonly="readonly">
 
-                <input id="timestamp" type="datetime" name="timestamp" readonly="readonly">
+                <input id="timestamp" type="datetime" name="timestamp" readonly="readonly"> <!--This is invisible. For backend purposes only-->
 
                 <br>
                 <button id="addScoreBtn">OK</button>
