@@ -53,10 +53,8 @@ var lines = 0;
 maincontext.drawImage(bg, 0, 0, 10, 20);
 document.addEventListener('keydown', kbcontrols);
 
-function kbcontrols(event)
-{
-    if (event.keyCode === 13)
-    {
+function kbcontrols(event) {
+    if (event.keyCode === 13) {
         document.querySelector("#startDirection").style.display = "none";
         setInterval(timer, 1000);
         document.removeEventListener('keydown', kbcontrols); //For the "Press ENTER to start"
@@ -93,10 +91,8 @@ function timer() {
     }
 }
 
-function playercontrols(event)
-{
-    switch (event.keyCode) 
-    {
+function playercontrols(event) {
+    switch (event.keyCode) {
         case 37: /* left arrow; move left   */ shiftShape(-1); document.querySelector("#leftArrow").style.backgroundColor = "#AAAAFF"; break;
         case 39: /* right arrow; move right */ shiftShape(1); document.querySelector("#rightArrow").style.backgroundColor = "#AAAAFF"; break;
         case 32: /* space dropFast()        */ dropFast(); document.querySelector("#spacebar").style.backgroundColor = "#AAAAFF"; break;
@@ -109,8 +105,7 @@ function playercontrols(event)
 }
 
 function deactivateBtn(event) { //For the visual on-screen keyboard
-    switch (event.keyCode) 
-    {
+    switch (event.keyCode) {
         case 37: document.querySelector("#leftArrow").style.backgroundColor = "#DDD"; break;
         case 39: document.querySelector("#rightArrow").style.backgroundColor = "#DDD"; break;
         case 32: document.querySelector("#spacebar").style.backgroundColor = "#DDD"; break;
@@ -121,34 +116,27 @@ function deactivateBtn(event) { //For the visual on-screen keyboard
     }
 }
 
-function assignPiece() 
-{
+function assignPiece() {
     let pieces = 'TJLOSZI';
     return pieces[pieces.length * Math.random() | 0];
 }
 
-function canvas(height, width)
-{
+function canvas(height, width) {
     let space = [];
 
-    while (height--)
-    {
+    while (height--) {
         space.push(new Array(width).fill(0));
     }
 
     return space;
 }
 
-function clearRow()
-{
+function clearRow() {
     let rows = 1;
 
-    loop: for (let y = gamearena.length - 1; y > 0; --y) 
-    {
-        for (let x = 0; x < gamearena[y].length; ++x)
-        {
-            if (gamearena[y][x] === 0)
-            {
+    loop: for (let y = gamearena.length - 1; y > 0; --y) {
+        for (let x = 0; x < gamearena[y].length; ++x) {
+            if (gamearena[y][x] === 0) {
                 continue loop;
             }
         }
@@ -161,15 +149,12 @@ function clearRow()
     }
 }
 
-function updateScore(rows) /* and level up! */
-{
+function updateScore(rows) {
     score += rows * 10;
     lines += 1;
-    if (score > 49 * level) 
-    {
+    if (score > 49 * level) {
         level += 1;
-        if (dropSpeed > 100)
-        {
+        if (dropSpeed > 100) {
             dropSpeed -= 100;
             originalDropSpeed = dropSpeed;
         }
@@ -178,19 +163,14 @@ function updateScore(rows) /* and level up! */
     displayScore();
 }
 
-function collision() 
-{
-    for (let y = 0; y < gamepiece.matrix.length; ++y) 
-    {
-        for (let x = 0; x < gamepiece.matrix[y].length; ++x)
-        {
-            if (gamepiece.matrix[y][x] !== 0 && (gamearena[y + gamepiece.position.y] && gamearena[y + gamepiece.position.y][x + gamepiece.position.x]) !== 0)
-            {
+function collision() {
+    for (let y = 0; y < gamepiece.matrix.length; ++y) {
+        for (let x = 0; x < gamepiece.matrix[y].length; ++x) {
+            if (gamepiece.matrix[y][x] !== 0 && (gamearena[y + gamepiece.position.y] && gamearena[y + gamepiece.position.y][x + gamepiece.position.x]) !== 0) {
                 if (dropSpeed == 0) { //if dropFast was used
                     dropSpeed = originalDropSpeed; //reset the dropSpeed after tetromino lands
                     document.addEventListener('keydown', playercontrols); //re-enable controls
                 }
-
                 return true;
             }
         }
@@ -198,20 +178,17 @@ function collision()
     return false;
 }
 
-function displayScore() 
-{
+function displayScore() {
     document.getElementById('score').innerText = score;
     document.getElementById('level').innerText = level;
     document.getElementById('lines').innerText = lines;
 }
 
-function dropShape() 
-{
+function dropShape() {
     if(gameOverStatus == false) {
         gamepiece.position.y++;
 
-        if (collision()) 
-        {
+        if (collision()) {
             gamepiece.position.y--;
             fuse();
             if (gameOverStatus == false) {
@@ -232,12 +209,9 @@ function dropFast() {
     dropShape();
 }
 
-function fuse()
-{
-    gamepiece.matrix.forEach((row, y) =>
-    {
-        row.forEach((column, x) =>
-        {
+function fuse() {
+    gamepiece.matrix.forEach((row, y) => {
+        row.forEach((column, x) => {
             if (column !== 0)
             {
                 try {
@@ -252,11 +226,9 @@ function fuse()
     });
 }
 
-function gameOver() 
-{
+function gameOver() {
     gameOverStatus = true;
     document.querySelector("#gameOverMsg").style.display = "block";
-    //TODO: reset game
 
     //only prompt to enter name if the leaderboard successfully loaded from API & score is > 0
     if (document.querySelector("#leaderboard").style.display == "block" && score > 0) {
@@ -270,10 +242,8 @@ function restartGame() {
     window.location.reload();
 }
 
-function gamePiece(shape) 
-{
-    switch (shape) 
-    {
+function gamePiece(shape) {
+    switch (shape) {
         case 'I': 
         return [
             [0, 0, 0, 0], 
@@ -325,15 +295,13 @@ function gamePiece(shape)
     }
 }
 
-function initiateNewGamePiece(n) 
-{
+function initiateNewGamePiece(n) {
     if (gameOverStatus == false) {
         gamepiece.matrix = gamePiece(n);
         gamepiece.position.x = (gamearena[0].length / 2 | 0) - (gamepiece.matrix[0].length / 2 | 0);
         gamepiece.position.y = 0;
 
-        if (collision())
-        {
+        if (collision()) {
             collisionNum++;
             if (collisionNum >= 3) { //Let the tetrominos overlap for a bit before ending the game
                 gameOver();
@@ -342,8 +310,7 @@ function initiateNewGamePiece(n)
     }
 }
 
-function loadBullpen() 
-{
+function loadBullpen() {
     standby = assignPiece();
 
     bullpencontext.clearRect(0, 0, bp.w, bp.h);
@@ -356,8 +323,7 @@ function loadBullpen()
     renderElement(bullpenpiece.matrix, { x: 0, y: 0 }, bullpencontext);
 }
 
-function drawCanvases()
-{
+function drawCanvases() {
     maincontext.clearRect(0, 0, maincanvas.width, maincanvas.height);
     maincontext.drawImage(bg, 0, 0, 10, 20);
 
@@ -371,14 +337,10 @@ function drawGhosts() {
 }
 
 
-function renderElement(element, offset, context) 
-{
-    element.forEach((row, ypos) =>
-    {
-        row.forEach((color, xpos) =>
-        {
-            if (color !== 0) 
-            {
+function renderElement(element, offset, context) {
+    element.forEach((row, ypos) => {
+        row.forEach((color, xpos) => {
+            if (color !== 0) {
                 context.globalCompositeOperation='source-over'; //puts the Tetromino atop the other elements (like z-index)
                 context.drawImage(cube, xpos + offset.x, ypos + offset.y, 1, 1);
                 context.fillStyle = "rgba(" + colors[color] + ", 0.6)";
@@ -389,10 +351,8 @@ function renderElement(element, offset, context)
 }
 
 function renderGhost(element, offset, context) {
-    element.forEach((row, ypos) =>
-    {
-        row.forEach((color, xpos) =>
-        {
+    element.forEach((row, ypos) => {
+        row.forEach((color, xpos) => {
             if (color !== 0) 
             {
                 context.globalCompositeOperation='destination-over'; //puts the ghost under the Tetromino (like z-index)
@@ -403,42 +363,33 @@ function renderGhost(element, offset, context) {
     });
 }
 
-function rotate(shape, direction) 
-{
-    for (let y = 0; y < shape.length; ++y)
-    {
-        for (let x = 0; x < y; ++x)
-        {
+function rotate(shape, direction) {
+    for (let y = 0; y < shape.length; ++y) {
+        for (let x = 0; x < y; ++x) {
             [shape[x][y], shape[y][x]] = [shape[y][x], shape[x][y]];
         }
     }
 
-    if (direction > 0)
-    {
-        shape.forEach((row) =>
-        { 
+    if (direction > 0) {
+        shape.forEach((row) => { 
             row.reverse(); 
         });
     }
-    else
-    {
+    else {
         shape.reverse();
     }
 }
 
-function rotateShape(direction) 
-{
+function rotateShape(direction) {
     let offset = 1;
 
     rotate(gamepiece.matrix, direction);
 
-    while (collision()) 
-    {
+    while (collision()) {
         gamepiece.position += offset;
         offset = -(offset + (offset > 0 ? 1 : -1));
 
-        if (offset > gamepiece.matrix[0].length) 
-        {
+        if (offset > gamepiece.matrix[0].length) {
             rotate(gamepiece.matrix, -direction);
             gamepiece.position.x = gamepiece.position;
             return;
@@ -446,14 +397,12 @@ function rotateShape(direction)
     }
 }
 
-function run(t = 0) 
-{
+function run(t = 0) {
     const newTime = t - time;
 
     dropCounter += newTime;
 
-    if (dropCounter > dropSpeed)
-    {
+    if (dropCounter > dropSpeed) {
         dropShape();
     }
 
@@ -464,12 +413,10 @@ function run(t = 0)
     cancelId = requestAnimationFrame(run);
 }
 
-function shiftShape(offset) 
-{
+function shiftShape(offset) {
     gamepiece.position.x += offset;
 
-    if (collision())
-    {
+    if (collision()) {
         gamepiece.position.x -= offset;
     }
 }
