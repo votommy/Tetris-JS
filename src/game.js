@@ -7,18 +7,25 @@ const ghostcontext = ghostcanvas.getContext('2d');
 const bullpencanvas = document.getElementById('bullpenarea');
 const bullpencontext = bullpencanvas.getContext('2d');
 
+const jailcellcanvas = document.getElementById('jailcellarea');
+const jailcellcontext = jailcellcanvas.getContext('2d');
+
 maincontext.scale(30, 30);
 ghostcontext.scale(30, 30);
 bullpencontext.scale(20, 20);
+jailcellcontext.scale(20, 20);
 
 const gamepiece = { position: { x: 0, y: 0 }, matrix: null };
 const bullpenpiece = { position: { x: 0, y: 0 }, matrix: null };
+const jailcellpiece = { position: { x: 0, y: 0 }, matrix: null };
 
 const bp = { h: bullpencanvas.height, w: bullpencanvas.width, c: "#ccc" };
+const jp = { h: jailcellcanvas.height, w: jailcellcanvas.width, c: "#ccc" };
 
 const gamearena = canvas(20, 10);
 const ghostarena = canvas(20, 10);
 const bullpen = canvas(4, 2);
+const jailcell = canvas(4, 2);
 
 const colors = [
     null, 
@@ -35,15 +42,19 @@ const bg = document.getElementById('bg');
 const cube = document.getElementById('cube');
 const tetris = document.getElementById('tetris');
 
-let isFirstPiece = true;
+let gameOverStatus = false;
 var standby = assignPiece();
+var nextPiece = standby;
+var currentPiece = nextPiece;
+let isFirstHold = true;
+var heldPiece = currentPiece;
+let isHeldAlready = false;
 var cancelId = 0;
 
 var dropCounter = 0;
 var dropSpeed = 1000;
 let originalDropSpeed = dropSpeed;
 var time = 0;
-let gameOverStatus = false;
 let collisionNum = 0;
 
 let playTime = 0;
@@ -64,7 +75,6 @@ function kbcontrols(event) {
         document.addEventListener("keyup", deactivateBtn);
 
         initiateNewGamePiece(standby);
-        isFirstPiece = false;
         loadBullpen();
          
         requestAnimationFrame(run);
@@ -103,6 +113,7 @@ function playercontrols(event) {
         case 40: /* down arrow; drop piece  */ dropShape(); document.querySelector("#downArrow").style.backgroundColor = "#AAAAFF"; break;
         case 88: /* x; rotate right         */ rotateShape(1); document.querySelector("#xBtn").style.backgroundColor = "#AAAAFF"; break;
         case 90: /* z; rotate left          */ rotateShape(-1); document.querySelector("#zBtn").style.backgroundColor = "#AAAAFF"; break;
+        case 16: /* shift; hold piece          */ hold(); document.querySelector("#shiftBtn").style.backgroundColor = "#AAAAFF"; break;
     }
 }
 function restartListener(event) {
@@ -120,19 +131,41 @@ function deactivateBtn(event) { //For the visual on-screen keyboard
         case 40: document.querySelector("#downArrow").style.backgroundColor = "#DDD"; break;
         case 88: document.querySelector("#xBtn").style.backgroundColor = "#DDD"; break;
         case 90: document.querySelector("#zBtn").style.backgroundColor = "#DDD"; break;
+        case 16: document.querySelector("#shiftBtn").style.backgroundColor = "#DDD"; break;
     }
 }
 
 function assignPiece() {
     let pieces = 'TJLOSZI';
-    if (isFirstPiece == false) {
-        return pieces[pieces.length * Math.random() | 0];
+    currentPiece = nextPiece;
+    nextPiece = pieces[pieces.length * Math.random() | 0];
+    return nextPiece;
+}
+
+function assignHeldPiece() {
+    loadJailcell();
+
+    if (isFirstHold == false) {
+        initiateNewGamePiece(heldPiece);
+        heldPiece = currentPiece;
+        loadJailcell();
     }
     else {
-        pieces = 'TJLOI'; // Don't let the first piece be S or Z because players like I would just restart anyway.
-        return pieces[pieces.length * Math.random() | 0];
+        initiateNewGamePiece(standby);
+        heldPiece = currentPiece;
+        assignPiece();
+        loadBullpen();
     }
-    
+
+    isFirstHold = false;
+}
+
+function hold() {
+    if (isHeldAlready == false) { //don't let players hold twice on the same tetromino
+        assignHeldPiece();
+        isHeldAlready = true;
+    }
+    //else, do nothing
 }
 
 function canvas(height, width) {
@@ -244,6 +277,7 @@ function fuse() {
             }
         });
     });
+    isHeldAlready = false; //Reset double-hold
 }
 
 function gameOver() {
@@ -342,6 +376,17 @@ function loadBullpen() {
 
     renderElement(bullpen, { x: 0, y: 1 }, bullpencontext);
     renderElement(bullpenpiece.matrix, { x: 0, y: 0 }, bullpencontext);
+}
+
+function loadJailcell() {
+    jailcellcontext.clearRect(0, 0, jp.w, jp.h);
+    jailcellcontext.fillStyle = "rgba(255, 255, 255, 0)";
+    jailcellcontext.fillRect(0, 0, jp.w, jp.h);
+
+    jailcellpiece.matrix = gamePiece(heldPiece);
+
+    renderElement(jailcell, { x: 0, y: 1 }, jailcellcontext);
+    renderElement(jailcellpiece.matrix, { x: 0, y: 0 }, jailcellcontext);
 }
 
 function drawCanvases() {
