@@ -106,14 +106,14 @@ function timer() {
 
 function playercontrols(event) {
     switch (event.keyCode) {
-        case 37: /* left arrow; move left   */ shiftShape(-1); document.querySelector("#leftArrow").style.backgroundColor = "#AAAAFF"; break;
-        case 39: /* right arrow; move right */ shiftShape(1); document.querySelector("#rightArrow").style.backgroundColor = "#AAAAFF"; break;
-        case 32: /* space dropFast()        */ dropFast(); document.querySelector("#spacebar").style.backgroundColor = "#AAAAFF"; break;
+        case 37: /* left arrow; move left   */ event.preventDefault(); shiftShape(-1); document.querySelector("#leftArrow").style.backgroundColor = "#AAAAFF"; break;
+        case 39: /* right arrow; move right */ event.preventDefault(); shiftShape(1); document.querySelector("#rightArrow").style.backgroundColor = "#AAAAFF"; break;
+        case 32: /* space dropFast()        */ event.preventDefault(); dropFast(); document.querySelector("#spacebar").style.backgroundColor = "#AAAAFF"; break;
         case 38: /* up arrow; rotate right  */ event.preventDefault(); rotateShape(1); document.querySelector("#upArrow").style.backgroundColor = "#AAAAFF"; break;
         case 40: /* down arrow; drop piece  */ event.preventDefault(); dropShape(); document.querySelector("#downArrow").style.backgroundColor = "#AAAAFF"; break;
         case 88: /* x; rotate right         */ rotateShape(1); document.querySelector("#xBtn").style.backgroundColor = "#AAAAFF"; break;
         case 90: /* z; rotate left          */ rotateShape(-1); document.querySelector("#zBtn").style.backgroundColor = "#AAAAFF"; break;
-        case 16: /* shift; hold piece          */ hold(); document.querySelector("#shiftBtn").style.backgroundColor = "#AAAAFF"; break;
+        case 16: /* shift; hold piece       */ hold(); document.querySelector("#shiftBtn").style.backgroundColor = "#AAAAFF"; break;
     }
 }
 function restartListener(event) {

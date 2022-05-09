@@ -211,7 +211,7 @@ a {
 
 #leaderboard {
     position: absolute;
-    top: 45px;
+    top: 8px;
     left: 700px;
     padding: 16px 30px;
     background-color: #AAA;
@@ -222,15 +222,25 @@ a {
     overflow-y: scroll;
     max-height: 500px;
 }
+#leaderboard table {
+    border-collapse: collapse;
+    margin-left: -15px;
+    margin-right: -15px;
+}
 #leaderboard td {
     text-align: left;
     font-weight: normal;
-    padding-bottom: 15px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    border-collapse: collapse;
 }
 #leaderboard h2 {
     font-size: 20px;
     color: #5f7d99;
     text-align: center;
+}
+tr:hover {
+    background-color: #00000020;
 }
 
 ::-webkit-scrollbar {

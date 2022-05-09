@@ -33,7 +33,10 @@ function renderLeaderboard(doc) {
     if (count > 9) {
         xtraDigit = "";
     }
-    text += "<tr><td style='padding-right: 50px;'>" + xtraDigit.concat(count) + "</td><td style='padding-right: 150px;'>" + doc.data().name + "</td><td>" + doc.data().highscore + "</td></tr>";
+
+    const timestampTooltip = new Date(doc.data().timestamp.seconds*1000).toLocaleDateString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+    text += "<tr title='" + timestampTooltip + "'><td style='padding-right: 50px; padding-left: 15px;'>" + xtraDigit.concat(count) + "</td><td style='padding-right: 150px;'>" + doc.data().name + "</td><td style='padding-right: 15px;'>" + doc.data().highscore + "</td></tr>";
     count++;
 }
 
@@ -71,4 +74,4 @@ addScoreForm.addEventListener('submit', (e) => {
         document.querySelector('#namePrompt').style.display = "none";
         window.location.reload();
     })
-})
+});
