@@ -186,7 +186,11 @@ function collision()
         {
             if (gamepiece.matrix[y][x] !== 0 && (gamearena[y + gamepiece.position.y] && gamearena[y + gamepiece.position.y][x + gamepiece.position.x]) !== 0)
             {
-                dropSpeed = originalDropSpeed; //if fastDrop was used, reset the dropSpeed after tetromino lands
+                if (dropSpeed == 0) { //if dropFast was used
+                    dropSpeed = originalDropSpeed; //reset the dropSpeed after tetromino lands
+                    document.addEventListener('keydown', playercontrols); //re-enable controls
+                }
+
                 return true;
             }
         }
@@ -199,7 +203,6 @@ function displayScore()
     document.getElementById('score').innerText = score;
     document.getElementById('level').innerText = level;
     document.getElementById('lines').innerText = lines;
-//    document.getElementById('speed').innerText = ((1000 - dropSpeed) + 100) / 100;
 }
 
 function dropShape() 
@@ -223,10 +226,10 @@ function dropShape()
 }
 
 function dropFast() {
-    dropSpeed = originalDropSpeed;
+    document.removeEventListener('keydown', playercontrols); //disable controls until the tetromino lands
     dropSpeed = 0;
 
-    dropShape();  
+    dropShape();
 }
 
 function fuse()
