@@ -22,7 +22,7 @@ body {
     font-size: 12px;
     position: absolute;
     left: 40px;
-    top: 700px;
+    top: 650px;
 }
 .keyboard div {
     background-color: #DDD;
@@ -117,8 +117,8 @@ body {
 
 h1 {
     position: absolute;
-    top: 40px;
-    left: 50px;
+    top: 5px;
+    left: 150px;
     color: #5f7d99;
 }
 
@@ -129,7 +129,7 @@ h1 {
     border: solid 2px #8396a8;
     border-radius: 16px;
     display: flex;
-    height: 650px;
+    height: 630px;
     padding: 1.5rem;
     width: 510px;
 }
@@ -141,9 +141,7 @@ h1 {
 #main
 {
     position: absolute;
-    height: 600px;
-    width: 300px;
-    top: 115px;
+    top: 70px;
     left: 120px;
 }
 
@@ -185,7 +183,7 @@ hr {
     padding-left: 20px;
     width: 100px;
     font-weight: bold;
-    top: 116px;
+    top: 75px;
     left: 10px;
 }
 #sidebar
@@ -195,7 +193,7 @@ hr {
     padding-left: 20px;
     width: 100px;
     font-weight: bold;
-    top: 100px;
+    top: 55px;
     left: 420px;
 }
 
