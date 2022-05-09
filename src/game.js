@@ -143,16 +143,15 @@ function assignPiece() {
 }
 
 function assignHeldPiece() {
-    loadJailcell();
-
     if (isFirstHold == false) {
         initiateNewGamePiece(heldPiece);
         heldPiece = currentPiece;
-        loadJailcell();
+        loadJailcell(heldPiece);
     }
     else {
-        initiateNewGamePiece(standby);
+        initiateNewGamePiece(standby); console.log(currentPiece + heldPiece + standby);
         heldPiece = currentPiece;
+        loadJailcell(currentPiece);
         assignPiece();
         loadBullpen();
     }
@@ -378,12 +377,12 @@ function loadBullpen() {
     renderElement(bullpenpiece.matrix, { x: 0, y: 0 }, bullpencontext);
 }
 
-function loadJailcell() {
+function loadJailcell(piece) {
     jailcellcontext.clearRect(0, 0, jp.w, jp.h);
     jailcellcontext.fillStyle = "rgba(255, 255, 255, 0)";
     jailcellcontext.fillRect(0, 0, jp.w, jp.h);
 
-    jailcellpiece.matrix = gamePiece(heldPiece);
+    jailcellpiece.matrix = gamePiece(piece);
 
     renderElement(jailcell, { x: 0, y: 1 }, jailcellcontext);
     renderElement(jailcellpiece.matrix, { x: 0, y: 0 }, jailcellcontext);
