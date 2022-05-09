@@ -59,6 +59,7 @@ function kbcontrols(event) {
         setInterval(timer, 1000);
         document.removeEventListener('keydown', kbcontrols); //For the "Press ENTER to start"
         document.addEventListener('keydown', playercontrols);
+        document.addEventListener('keydown', restartListener);
         document.addEventListener("keyup", deactivateBtn);
 
         initiateNewGamePiece(standby);
@@ -100,7 +101,11 @@ function playercontrols(event) {
         case 40: /* down arrow; drop piece  */ dropShape(); document.querySelector("#downArrow").style.backgroundColor = "#AAAAFF"; break;
         case 88: /* x; rotate right         */ rotateShape(1); document.querySelector("#xBtn").style.backgroundColor = "#AAAAFF"; break;
         case 90: /* z; rotate left          */ rotateShape(-1); document.querySelector("#zBtn").style.backgroundColor = "#AAAAFF"; break;
-        case 27: /* esc; restart              */ restartGame(); break;
+    }
+}
+function restartListener(event) {
+    if (event.keyCode == 27) {
+        restartGame();
     }
 }
 
@@ -233,6 +238,7 @@ function fuse() {
 }
 
 function gameOver() {
+    document.removeEventListener('keydown', playercontrols); //disable controls (restart key still works)
     gameOverStatus = true;
     document.querySelector("#gameOverMsg").style.display = "block";
 
