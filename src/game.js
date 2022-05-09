@@ -132,7 +132,7 @@ function canvas(height, width) {
 }
 
 function clearRow() {
-    let rows = 1;
+    let rows = 0;
 
     loop: for (let y = gamearena.length - 1; y > 0; --y) {
         for (let x = 0; x < gamearena[y].length; ++x) {
@@ -145,21 +145,27 @@ function clearRow() {
         gamearena.unshift(row);
         ++y;
 
-        updateScore(rows);
+        rows++;
+        lines += 1;
     }
+    updateScore();
 }
 
 function updateScore(rows) {
-    score += rows * 10;
-    lines += 1;
-    if (score > 49 * level) {
+    switch (rows) {
+        case 1: score += 10; break;
+        case 2: score += 30; break;
+        case 3: score += 50; break;
+        case 4: score += 80; break;
+    }
+    if (lines >= 5 * level) {
         level += 1;
         if (dropSpeed > 100) {
             dropSpeed -= 100;
             originalDropSpeed = dropSpeed;
         }
     }
-    rows *= 2;
+    // rows *= 2;
     displayScore();
 }
 
