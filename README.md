@@ -4,18 +4,18 @@
 
 Recent additions: 
 - Implemented Leaderboard
-- Implemented hard drop
-- Implemented column highlighting
+- Implemented Hard Drop feature
+- Implemented Hold feature
 - Implemented Game Over condition
 - Improved scoring and leveling system
-- Added visual instructions
+- Added column highlighting
+- Added visual instructions & on-screen keys mirroring
 - Added in-game timer
 - Added Restart option
 - Rebinded keys to be more similar to other versions
 - Completely redesigned the GUI
 
-To do: 
-- Implement a Hold feature
+To do:
 - Implement Pause/Resume feature
 
 Bugs:
