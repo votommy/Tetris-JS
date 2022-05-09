@@ -35,6 +35,7 @@ const bg = document.getElementById('bg');
 const cube = document.getElementById('cube');
 const tetris = document.getElementById('tetris');
 
+let isFirstPiece = true;
 var standby = assignPiece();
 var cancelId = 0;
 
@@ -51,18 +52,19 @@ var level = 1;
 var lines = 0;
 
 maincontext.drawImage(bg, 0, 0, 10, 20);
-document.addEventListener('keydown', kbcontrols);
+document.addEventListener('keydown', kbcontrols); //For the "Press ENTER to start"
 
 function kbcontrols(event) {
     if (event.keyCode === 13) {
         document.querySelector("#startDirection").style.display = "none";
         setInterval(timer, 1000);
-        document.removeEventListener('keydown', kbcontrols); //For the "Press ENTER to start"
+        document.removeEventListener('keydown', kbcontrols); //After it's pressed, it's no longer needed. TODO: pause btn
         document.addEventListener('keydown', playercontrols);
         document.addEventListener('keydown', restartListener);
         document.addEventListener("keyup", deactivateBtn);
 
         initiateNewGamePiece(standby);
+        isFirstPiece = false;
         loadBullpen();
          
         requestAnimationFrame(run);
@@ -123,7 +125,14 @@ function deactivateBtn(event) { //For the visual on-screen keyboard
 
 function assignPiece() {
     let pieces = 'TJLOSZI';
-    return pieces[pieces.length * Math.random() | 0];
+    if (isFirstPiece == false) {
+        return pieces[pieces.length * Math.random() | 0];
+    }
+    else {
+        pieces = 'TJLOI'; // Don't let the first piece be S or Z because players like I would just restart anyway.
+        return pieces[pieces.length * Math.random() | 0];
+    }
+    
 }
 
 function canvas(height, width) {
