@@ -148,7 +148,7 @@ function clearRow() {
         rows++;
         lines += 1;
     }
-    updateScore();
+    updateScore(rows);
 }
 
 function updateScore(rows) {
