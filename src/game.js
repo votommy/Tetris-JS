@@ -149,7 +149,7 @@ function assignHeldPiece() {
         loadJailcell(heldPiece);
     }
     else {
-        initiateNewGamePiece(standby); console.log(currentPiece + heldPiece + standby);
+        initiateNewGamePiece(standby);
         heldPiece = currentPiece;
         loadJailcell(currentPiece);
         assignPiece();
