@@ -4,7 +4,7 @@
 
 Recent additions: 
 - Implemented Leaderboard
-- Implemented fast drop.
+- Implemented hard drop.
 - Implemented column highlighting.
 - Implemented Game Over condition
 - Added visual instructions.
