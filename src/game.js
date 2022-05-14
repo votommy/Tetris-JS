@@ -417,8 +417,15 @@ function renderGhost(element, offset, context) {
             if (color !== 0) 
             {
                 context.globalCompositeOperation='destination-over'; //puts the ghost under the Tetromino (like z-index)
-                context.fillStyle = "#999";
-                context.fillRect(xpos + offset.x, ypos + offset.y, 1, 20);
+                if(dropSpeed != 0) {
+                    context.fillStyle = "#999";
+                    context.fillRect(xpos + offset.x, ypos + offset.y, 1, 20);
+                }
+                else { //add speed trails if dropFast was used
+                    context.fillStyle = "rgba(" + colors[color] + ", 0.2)";
+                    context.fillRect(xpos + offset.x, ypos + offset.y, 1, -10);
+                }
+                
             }
         });
     });
