@@ -55,7 +55,6 @@ var dropCounter = 0;
 var dropSpeed = 1000;
 let originalDropSpeed = dropSpeed;
 var time = 0;
-let collisionNum = 0;
 
 let playTime = 0;
 var score = 0;
@@ -356,10 +355,7 @@ function initiateNewGamePiece(n) {
         gamepiece.position.y = 0;
 
         if (collision()) {
-            collisionNum++;
-            if (collisionNum >= 3) { //Let the tetrominos overlap for a bit before ending the game
-                gameOver();
-            }
+            gameOver();
         }
     }
 }
@@ -451,14 +447,16 @@ function rotateShape(direction) {
     rotate(gamepiece.matrix, direction);
 
     while (collision()) {
-        gamepiece.position += offset;
-        offset = -(offset + (offset > 0 ? 1 : -1));
+        rotate(gamepiece.matrix, -direction);
 
-        if (offset > gamepiece.matrix[0].length) {
-            rotate(gamepiece.matrix, -direction);
-            gamepiece.position.x = gamepiece.position;
-            return;
-        }
+        // gamepiece.position += offset;
+        // offset = -(offset + (offset > 0 ? 1 : -1));
+
+        // if (offset > gamepiece.matrix[0].length) {
+        //     rotate(gamepiece.matrix, -direction);
+        //     gamepiece.position.x = gamepiece.position;
+        //     return;
+        // }
     }
 }
 
