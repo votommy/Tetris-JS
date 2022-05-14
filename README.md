@@ -17,6 +17,4 @@ Recent additions:
 
 To do:
 - Implement Pause/Resume feature
-
-Bugs:
-- Game crashes if Tetromino rotates into boundaries
+- Implement Super Rotation System (SRS)
