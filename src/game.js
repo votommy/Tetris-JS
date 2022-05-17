@@ -269,7 +269,7 @@ function fuse() {
                     gamearena[y + gamepiece.position.y][x + gamepiece.position.x] = column;
                 }
                 catch {
-                    console.log("Boundaries error"); //Refer to "Bugs" section of the README.md file in the repo.
+                    console.log("Boundaries error");
                     gameOver();
                 }
             }
