@@ -32,7 +32,7 @@ body {
     border: 1px gray solid;
     text-align: center;
     padding-top: 5px;
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
 }
 #leftArrow {
     left: 530px;
@@ -300,9 +300,14 @@ tr:hover {
     cursor: pointer;
 }
 
-footer{
+footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
+    font-family: Arial, sans-serif;
+}
+footer a {
+    text-decoration: none;
+    color: #8396a8;
 }
