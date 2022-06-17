@@ -43,6 +43,7 @@ const cube = document.getElementById('cube');
 const tetris = document.getElementById('tetris');
 
 let gameOverStatus = false;
+let pauseStatus = false;
 var standby = assignPiece();
 var nextPiece = standby;
 var currentPiece = nextPiece;
@@ -72,6 +73,7 @@ function kbcontrols(event) {
         document.addEventListener('keydown', playercontrols);
         document.addEventListener('keydown', restartListener);
         document.addEventListener("keyup", deactivateBtn);
+        document.addEventListener("keydown", pauseListener);
 
         initiateNewGamePiece(standby);
         loadBullpen();
@@ -82,8 +84,13 @@ function kbcontrols(event) {
 
 function timer() {
     var date = new Date(null);
-    if (gameOverStatus == false) {
-        date.setSeconds(++playTime)
+    if (gameOverStatus === false) {
+        if (pauseStatus === false) {
+            date.setSeconds(++playTime)
+        }
+        else {
+            date.setSeconds(playTime);
+        }
         if (playTime < 3600) {
             document.querySelector("#timer").innerHTML = date.toISOString().substr(14, 5);
         }
@@ -120,6 +127,12 @@ function restartListener(event) {
         restartGame();
     }
 }
+function pauseListener(event) {
+    if (event.keyCode == 80) {
+        pauseToggle();
+        document.querySelector("#pBtn").style.backgroundColor = "#AAAAFF";
+    }
+}
 
 function deactivateBtn(event) { //For the visual on-screen keyboard
     switch (event.keyCode) {
@@ -131,6 +144,7 @@ function deactivateBtn(event) { //For the visual on-screen keyboard
         case 88: document.querySelector("#xBtn").style.backgroundColor = "#DDD"; break;
         case 90: document.querySelector("#zBtn").style.backgroundColor = "#DDD"; break;
         case 16: document.querySelector("#shiftBtn").style.backgroundColor = "#DDD"; break;
+        case 80: document.querySelector("#pBtn").style.backgroundColor = "#DDD"; break;
     }
 }
 
@@ -278,8 +292,26 @@ function fuse() {
     isHeldAlready = false; //Reset double-hold
 }
 
+function pauseToggle() {
+    if(pauseStatus === false) {
+        pauseStatus = true;
+        document.removeEventListener('keydown', playercontrols); //disable controls while paused
+        cancelAnimationFrame(cancelId);
+        document.querySelector("#pTxt").innerHTML = "UNPAUSE";
+        document.querySelector("#pTxt").style = "left: 535px; top: -74px;";
+    }
+    else {
+        pauseStatus = false;
+        document.addEventListener('keydown', playercontrols); //reenable controls
+        requestAnimationFrame(run);
+        document.querySelector("#pTxt").innerHTML = "PAUSE";
+        document.querySelector("#pTxt").style = "left: 547px; top: -74px;";
+    }
+}
+
 function gameOver() {
     document.removeEventListener('keydown', playercontrols); //disable controls (restart key still works)
+    document.removeEventListener('keydown', pauseListener); //disable Pause on the letter P
     gameOverStatus = true;
     document.querySelector("#gameOverMsg").style.display = "block";
 
