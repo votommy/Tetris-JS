@@ -6,6 +6,7 @@ Recent additions:
 - Implemented Leaderboard
 - Implemented Hard Drop feature
 - Implemented Hold feature
+- Implemented Pause/Resume feature
 - Implemented Game Over condition
 - Improved scoring and leveling system
 - Added column highlighting
@@ -16,5 +17,4 @@ Recent additions:
 - Completely redesigned the GUI
 
 To do:
-- Implement Pause/Resume feature
 - Implement Super Rotation System (SRS)
