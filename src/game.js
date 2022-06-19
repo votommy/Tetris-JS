@@ -234,7 +234,7 @@ function collision() {
             if (gamepiece.matrix[y][x] !== 0 && (gamearena[y + gamepiece.position.y] && gamearena[y + gamepiece.position.y][x + gamepiece.position.x]) !== 0) {
                 if (dropSpeed == 0) { //if dropFast was used
                     dropSpeed = originalDropSpeed; //reset the dropSpeed after tetromino lands
-                    document.addEventListener('keydown', playercontrols); //re-enable controls
+                    // document.addEventListener('keydown', playercontrols); //re-enable controls
                 }
                 return true;
             }
@@ -268,7 +268,7 @@ function dropShape() {
 }
 
 function dropFast() {
-    document.removeEventListener('keydown', playercontrols); //disable controls until the tetromino lands
+    // document.removeEventListener('keydown', playercontrols); //disable controls until the tetromino lands
     dropSpeed = 0;
 
     dropShape();
@@ -449,14 +449,14 @@ function renderGhost(element, offset, context) {
             if (color !== 0) 
             {
                 context.globalCompositeOperation='destination-over'; //puts the ghost under the Tetromino (like z-index)
-                if(dropSpeed != 0) {
+                // if(dropSpeed != 0) {
                     context.fillStyle = "#999";
                     context.fillRect(xpos + offset.x, ypos + offset.y, 1, 20);
-                }
-                else { //add speed trails if dropFast was used
-                    context.fillStyle = "rgba(" + colors[color] + ", 0.2)";
-                    context.fillRect(xpos + offset.x, ypos + offset.y, 1, -10);
-                }
+                // }
+                // else { //add speed trails if dropFast was used
+                //     context.fillStyle = "rgba(" + colors[color] + ", 0.2)";
+                //     context.fillRect(xpos + offset.x, ypos + offset.y, 1, -10);
+                // }
                 
             }
         });
@@ -503,6 +503,10 @@ function run(t = 0) {
     const newTime = t - time;
 
     dropCounter += newTime;
+
+    while(dropSpeed === 0) {
+        dropShape();
+    }
 
     if (dropCounter > dropSpeed) {
         dropShape();
