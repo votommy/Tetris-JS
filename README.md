@@ -18,3 +18,5 @@ Recent additions:
 
 To do:
 - Implement Super Rotation System (SRS)
+- Add 40-line Sprint mode
+- Add 2-minute Ultra mode
