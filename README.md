@@ -20,3 +20,6 @@ To do:
 - Implement Super Rotation System (SRS)
 - Add 40-line Sprint mode
 - Add 2-minute Ultra mode
+
+Bugs:
+- If the 'Submit Score' button is clicked multiple times in quick succession, it'll post multiple entries into the database.
