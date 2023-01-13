@@ -61,17 +61,21 @@ getDocs(leaders)
 
 // Add highscore to db
 const addScoreForm = document.querySelector(".addScore")
+let isSubmitting = false;
 addScoreForm.addEventListener('submit', (e) => {
+    isSubmitting = true;
     e.preventDefault()
-
-    addDoc(colRef, {
-        name: addScoreForm.name.value.toUpperCase(),
-        highscore: parseInt(document.querySelector('#score').innerText),
-        timestamp: serverTimestamp()
-    })
-    .then(() => {
-        addScoreForm.reset()
-        document.querySelector('#namePrompt').style.display = "none";
-        window.location.reload();
-    })
+    if (isSubmitting === true) {
+        addDoc(colRef, {
+            name: addScoreForm.name.value.toUpperCase(),
+            highscore: parseInt(document.querySelector('#score').innerText),
+            timestamp: serverTimestamp()
+        })
+        .then(() => {
+            addScoreForm.reset()
+            document.querySelector('#namePrompt').style.display = "none";
+            window.location.reload();
+        })
+    }
+    isSubmitting = false;
 });
