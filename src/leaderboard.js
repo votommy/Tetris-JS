@@ -62,7 +62,7 @@ getDocs(leaders)
 // Add highscore to db
 const addScoreForm = document.querySelector(".addScore")
 addScoreForm.addEventListener('submit', (e) => {
-    document.querySelector("#addScoreBtn").disabled = true;
+    document.querySelector("#addScoreBtn").disabled = true; //Disable button so you can only submit once
 
     e.preventDefault()
 
