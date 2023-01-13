@@ -63,18 +63,18 @@ getDocs(leaders)
 const addScoreForm = document.querySelector(".addScore")
 addScoreForm.addEventListener('submit', (e) => {
     document.querySelector(".addScoreBtn").disabled = true;
-    
+
     e.preventDefault()
-    if (isSubmitting === true) {
-        addDoc(colRef, {
-            name: addScoreForm.name.value.toUpperCase(),
-            highscore: parseInt(document.querySelector('#score').innerText),
-            timestamp: serverTimestamp()
-        })
-        .then(() => {
-            addScoreForm.reset()
-            document.querySelector('#namePrompt').style.display = "none";
-            window.location.reload();
-        })
-    }
+    
+    addDoc(colRef, {
+        name: addScoreForm.name.value.toUpperCase(),
+        highscore: parseInt(document.querySelector('#score').innerText),
+        timestamp: serverTimestamp()
+    })
+    .then(() => {
+        addScoreForm.reset()
+        document.querySelector('#namePrompt').style.display = "none";
+        window.location.reload();
+    })
+    
 });
