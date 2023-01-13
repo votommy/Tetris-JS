@@ -62,10 +62,10 @@ getDocs(leaders)
 // Add highscore to db
 const addScoreForm = document.querySelector(".addScore")
 addScoreForm.addEventListener('submit', (e) => {
-    document.querySelector(".addScoreBtn").disabled = true;
+    // document.querySelector(".addScoreBtn").disabled = true;
 
     e.preventDefault()
-    
+
     addDoc(colRef, {
         name: addScoreForm.name.value.toUpperCase(),
         highscore: parseInt(document.querySelector('#score').innerText),
