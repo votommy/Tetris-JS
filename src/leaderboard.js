@@ -77,5 +77,4 @@ addScoreForm.addEventListener('submit', (e) => {
             window.location.reload();
         })
     }
-    isSubmitting = false;
 });
