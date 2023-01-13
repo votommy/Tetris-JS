@@ -61,9 +61,9 @@ getDocs(leaders)
 
 // Add highscore to db
 const addScoreForm = document.querySelector(".addScore")
-let isSubmitting = false;
 addScoreForm.addEventListener('submit', (e) => {
-    isSubmitting = true;
+    document.querySelector(".addScoreBtn").disabled = true;
+    
     e.preventDefault()
     if (isSubmitting === true) {
         addDoc(colRef, {
