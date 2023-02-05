@@ -22,4 +22,4 @@ To do:
 - Add 2-minute Ultra mode
 
 Bugs:
-- ~If the 'Submit Score' button is clicked multiple times in quick succession, it'll post multiple entries into the database.~
+- ~If the 'Submit Score' button is clicked multiple times in quick succession, it'll post multiple entries into the database.~ [Fixed]
