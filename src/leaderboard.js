@@ -52,8 +52,6 @@ getDocs(leaders)
         })
         text += "</table>";
         outputTable.innerHTML = text;
-
-        console.log(highscores);
     })
     .catch (err => {
         console.log(err.message);
