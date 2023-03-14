@@ -74,5 +74,8 @@ addScoreForm.addEventListener('submit', (e) => {
         document.querySelector('#namePrompt').style.display = "none";
         window.location.reload();
     })
+    .catch (err => {
+        console.log(err.message);
+    })
     
 });
