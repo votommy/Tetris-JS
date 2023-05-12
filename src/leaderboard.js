@@ -64,15 +64,24 @@ addScoreForm.addEventListener('submit', (e) => {
 
     e.preventDefault()
 
-    addDoc(colRef, {
+    try {
+        addDoc(colRef, {
         name: addScoreForm.name.value.toUpperCase(),
         highscore: parseInt(document.querySelector('#score').innerText),
         timestamp: serverTimestamp()
-    })
-    .then(() => {
-        addScoreForm.reset()
-        document.querySelector('#namePrompt').style.display = "none";
-        window.location.reload();
-    })
+        })
+        .then(() => {
+            addScoreForm.reset()
+            document.querySelector('#namePrompt').style.display = "none";
+            window.location.reload();
+        })
+    }
+    catch(err) {
+        console.log(err.message)
+    }
+    
+    // .catch (err => {
+    //     console.log(err.message);
+    // })
     
 });
