@@ -12,8 +12,6 @@ const firebaseApp = initializeApp( {
     appId: "1:926826076612:web:c79d1f239a6a058c236c91"
 });
 
-console.log("test");
-
 // self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
 // Initialize services
 initializeAppCheck(firebaseApp, {
@@ -66,24 +64,19 @@ addScoreForm.addEventListener('submit', (e) => {
 
     e.preventDefault()
 
-    try {
-        addDoc(colRef, {
+    addDoc(colRef, {
         name: addScoreForm.name.value.toUpperCase(),
         highscore: parseInt(document.querySelector('#score').innerText),
         timestamp: serverTimestamp()
-        })
-        .then(() => {
-            addScoreForm.reset()
-            document.querySelector('#namePrompt').style.display = "none";
-            window.location.reload();
-        })
-    }
-    catch(err) {
+    })
+    .then(() => {
+        addScoreForm.reset()
+        document.querySelector('#namePrompt').style.display = "none";
+        window.location.reload();
+    })
+    .catch (err => {
         console.log(err.message);
-    }
-    
-    // .catch (err => {
-    //     console.log(err.message);
-    // })
+        
+    })
     
 });
