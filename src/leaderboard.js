@@ -12,6 +12,8 @@ const firebaseApp = initializeApp( {
     appId: "1:926826076612:web:c79d1f239a6a058c236c91"
 });
 
+console.log("test");
+
 // self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
 // Initialize services
 initializeAppCheck(firebaseApp, {
@@ -77,7 +79,7 @@ addScoreForm.addEventListener('submit', (e) => {
         })
     }
     catch(err) {
-        console.log(err.message)
+        console.log(err.message);
     }
     
     // .catch (err => {
