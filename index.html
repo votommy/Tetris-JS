@@ -84,9 +84,12 @@
         </div>
         
         <footer>
-            <p>
-                ©2023 Developed by: Tommy
-            </p>
+            <p id="copyrightDate"></p>
         </footer>
     </body>
+
+    <script>
+        let year = new Date().getFullYear(); //Automatically update copyright year
+        document.querySelector("#copyrightDate").innerHTML = "&copy;" + year + " Developed by Tommy";
+    </script>
 </html>
