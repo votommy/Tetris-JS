@@ -130,7 +130,6 @@ function restartListener(event) {
 function pauseListener(event) {
     if (event.keyCode == 80) {
         pauseToggle();
-        document.querySelector("#pBtn").style.backgroundColor = "#AAAAFF";
     }
 }
 
@@ -144,7 +143,6 @@ function deactivateBtn(event) { //For the visual on-screen keyboard
         case 88: document.querySelector("#xBtn").style.backgroundColor = "#DDD"; break;
         case 90: document.querySelector("#zBtn").style.backgroundColor = "#DDD"; break;
         case 16: document.querySelector("#shiftBtn").style.backgroundColor = "#DDD"; break;
-        case 80: document.querySelector("#pBtn").style.backgroundColor = "#DDD"; break;
     }
 }
 
@@ -299,6 +297,7 @@ function pauseToggle() {
         cancelAnimationFrame(cancelId);
         document.querySelector("#pTxt").innerHTML = "UNPAUSE";
         document.querySelector("#pTxt").style = "left: 535px; top: -74px;";
+        document.querySelector("#pBtn").style.backgroundColor = "#AAAAFF";
     }
     else {
         pauseStatus = false;
@@ -306,6 +305,7 @@ function pauseToggle() {
         requestAnimationFrame(run);
         document.querySelector("#pTxt").innerHTML = "PAUSE";
         document.querySelector("#pTxt").style = "left: 547px; top: -74px;";
+        document.querySelector("#pBtn").style.backgroundColor = "#DDD";
     }
 }
 
